@@ -1,0 +1,48 @@
+body {
+  text-align: center;
+  font-family: "Happy Monkey", cursive;
+  background: #a2d2ff;
+  color: #ffffff;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  text-shadow: 0 0 1px black;
+}
+
+#bff-img {
+  width: 150px;
+  border-radius: 50%;
+  border: 6px solid #efb0c9;
+  margin-bottom: 10px;
+}
+
+/*
+Challenge:
+Make the bday elements look like the
+provided design slide.
+*/
+
+#bday-age {
+  background: #efb0c9;
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+#bday-date {
+  margin: 0px;
+  background: #efb0c9;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+#header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
