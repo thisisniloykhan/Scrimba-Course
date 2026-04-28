@@ -1,21 +1,19 @@
-// What are greeting and name? 
-// What are "Howdy" and "James"?
-// What are num1 and num2?
-// What are 3 and 4?
-
+// What are greeting and name? Parameters
+// What are "Howdy" and "James"? arguments
+// What are num1 and num2? parameters
+// What are 3 and 4? arguments
 
 //.                parameters
-function greetUser(greeting, name) { 
-    welcomeEl.textContent = `${greeting}, ${name} 👋`
+function greetUser(greeting, name) {
+  welcomeEl.textContent = `${greeting}, ${name} 👋`;
 }
 
 //.        arguments
-let hi = "Howdy"
-greetUser(hi, "James")
-
+let hi = "Howdy";
+greetUser(hi, "James");
 
 function add(num1, num2) {
-    return num1 + num2
+  return num1 + num2;
 }
 
-add(3, 4)
+add(3, 4);
