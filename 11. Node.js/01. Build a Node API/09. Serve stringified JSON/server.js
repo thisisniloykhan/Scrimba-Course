@@ -1,19 +1,22 @@
-import http from 'node:http'
- 
-const PORT = 8000
+import http from "node:http";
+import { getDataFromDB } from "./database/db.js";
+import { get } from "node:https";
 
-const server = http.createServer((req, res) => {
+const PORT = 8000;
 
-/*
+const server = http.createServer(async (req, res) => {
+  /*
 Challenge:
   1. Store our data in a const ‘destinations’.
   2. When a GET request is received to the ‘/api' endpoint, send our JSON stringified data.
     Think: What changes will you need to make to get this to work?
 */
 
-  if (req.url === '/api' && req.method === 'GET') {
-    res.end('This is from the server')
-  }
-})
+  const destinations = await getDataFromDB();
 
-server.listen(PORT, () => console.log(`Connected on port: ${PORT}`))
+  if (req.url === "/api" && req.method === "GET") {
+    res.end(JSON.stringify(destinations));
+  }
+});
+
+server.listen(PORT, () => console.log(`Connected on port: ${PORT}`));

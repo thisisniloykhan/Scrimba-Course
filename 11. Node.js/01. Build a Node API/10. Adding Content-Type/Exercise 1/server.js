@@ -1,20 +1,22 @@
-import http from 'node:http'
-import { getDataFromDB } from './database/db.js'
- 
-const PORT = 8000
+import http from "node:http";
+import { getDataFromDB } from "./database/db.js";
+
+const PORT = 8000;
 
 const server = http.createServer(async (req, res) => {
-  const destinations = await getDataFromDB()
+  const destinations = await getDataFromDB();
 
-
-  if (req.url === '/api' && req.method === 'GET') {
-/*
+  if (req.url === "/api" && req.method === "GET") {
+    /*
 Challenge:
 1. Access the ‘setHeader’ method on the response object and pass in two strings to set the      
    Content-Type to ‘application/json’ - watch out for casing! 
 */
-    res.end(JSON.stringify(destinations))
+    res.statusCode = 200;
+    res.setHeader("Content-Type", "application/json");
+    res.end(JSON.stringify(destinations));
+    // console.log(res.setHeader());
   }
-})
+});
 
-server.listen(PORT, () => console.log(`Connected on port: ${PORT}`))
+server.listen(PORT, () => console.log(`Connected on port: ${PORT}`));
