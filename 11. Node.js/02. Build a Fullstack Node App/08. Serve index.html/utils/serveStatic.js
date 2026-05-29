@@ -1,11 +1,18 @@
-import path from 'node:path'
-import fs from 'node:fs/promises'
+import path from "node:path";
+import fs from "node:fs/promises";
+import { sendResponse } from "./sendResponse.js";
 
-export function serveStatic(baseDir) {
-  
-  const filePath = path.join(baseDir, 'public', 'index.html')
+export async function serveStatic(req, res, baseDir) {
+  const filePath = path.join(baseDir, "public", "index.html");
 
-/*
+  try {
+    const content = await fs.readFile(filePath);
+    sendResponse(res, 200, "text/html", content);
+  } catch (error) {
+    console.log(error);
+  }
+
+  /*
 Challenge 1: 
 
 - Store index.html as a buffer in a const ‘content’. 
@@ -15,7 +22,7 @@ Challenge 1:
 
 */
 
-/*
+  /*
 Challenge 3:
 
 - Import sendResponse() and use it to serve index.html. 
@@ -25,5 +32,4 @@ Challenge 3:
   Make any changes necessary in server.js and delete any unneeded code.
 
 */
-
 }
