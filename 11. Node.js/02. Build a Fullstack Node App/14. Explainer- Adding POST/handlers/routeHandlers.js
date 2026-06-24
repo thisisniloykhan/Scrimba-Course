@@ -1,13 +1,16 @@
-import { getData } from '../utils/getData.js'
-import { sendResponse } from '../utils/sendResponse.js'
+import { getData } from "../utils/getData.js";
+import { sendResponse } from "../utils/sendResponse.js";
 
 export async function handleGet(res) {
-  const data = await getData()
-  const content = JSON.stringify(data)
-  sendResponse(res, 200, 'application/json', content)
-}  
+  const data = await getData();
+  const content = JSON.stringify(data);
+  sendResponse(res, 200, "application/json", content);
+}
 
 // handlePost
+export async function handlePost(req, res) {
+  console.log("POST request received");
+}
 
 /*
 Challenge:
