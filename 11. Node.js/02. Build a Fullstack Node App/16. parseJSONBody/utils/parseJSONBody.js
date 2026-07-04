@@ -9,17 +9,31 @@ Challenge 1:
 */
 
 export async function parseJSONBody(req) {
-
-  let body = ''
+  let body = "";
 
   for await (const chunk of req) {
-    body += chunk
+    body += chunk;
   }
-
   try {
-    return JSON.parse(body)
+    const parsedBody = JSON.parse(body);
+    return parsedBody;
   } catch (err) {
-    throw new Error(`Invalid JSON format: ${err}`)
+    throw new Error(`Invalid JSON format: ${err}`);
   }
-
 }
+
+// export async function parseJSONBody(req) {
+
+//   let body = ''
+
+//   for await (const chunk of req) {
+//     body += chunk
+//   }
+
+//   try {
+//     return JSON.parse(body)
+//   } catch (err) {
+//     throw new Error(`Invalid JSON format: ${err}`)
+//   }
+
+// }
