@@ -1,7 +1,22 @@
-function addNewSighting(newSighting) {
+import { getData } from "./getData.js";
+import fs from "node:fs/promises";
+import path from "node:path";
 
+
+export async function addNewSighting(newSighting) {
   try {
-/*
+    const oldData = await getData();
+
+    oldData.push(newSighting);
+
+    const newData = JSON.stringify(oldData, null, 2);
+
+    const pathJSON = path.join("data", "data.json");
+    await fs.writeFile(pathJSON, newData, "utf8");
+
+    return;
+
+    /*
     1. Get the existing data (remember, this will already be a JS array)
     2. Push the new sighting to it
     3. Write data to the file.
@@ -19,7 +34,6 @@ function addNewSighting(newSighting) {
     Remember to uncomment the import statement in routeHandler.js!!
 */
   } catch (err) {
-
+    throw new Error(err);
   }
-
 }
