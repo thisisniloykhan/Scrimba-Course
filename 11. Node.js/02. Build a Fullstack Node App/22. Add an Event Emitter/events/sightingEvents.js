@@ -1,5 +1,5 @@
-import { EventEmitter } from 'node:events'
-import { createAlert } from '../utils/createAlert.js'
+import { EventEmitter } from "node:events";
+import { createAlert } from "../utils/createAlert.js";
 
 /*
 Challenge 1
@@ -7,7 +7,6 @@ Challenge 1
 2. Register the listener function when an event called ‘sighting-added’ is detected. 
 */
 
-export const sightingEvents = new EventEmitter()
+export const sightingEvents = new EventEmitter();
 
-sightingEvents.on('sighting-added', createAlert)
- 
+sightingEvents.on("sighting-added", createAlert);
