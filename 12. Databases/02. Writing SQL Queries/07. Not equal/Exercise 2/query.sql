@@ -1,4 +1,2 @@
-/*
-	Filter out cars from 1965
-		Select the brand, model, year and price
-*/
+SELECT brand, model, price, color FROM cars
+	WHERE color != 'yellow';
