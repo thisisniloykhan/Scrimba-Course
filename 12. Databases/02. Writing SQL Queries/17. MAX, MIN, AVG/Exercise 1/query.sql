@@ -4,5 +4,10 @@
 	Use most_expensive as an alias
 */
 
-SELECT MAX(price) AS most_expensive FROM cars
+SELECT 
+CEIL(AVG(price)) AS avg,
+MIN(price),
+MAX(price) 
+FROM cars
 	WHERE sold IS TRUE;
+	 

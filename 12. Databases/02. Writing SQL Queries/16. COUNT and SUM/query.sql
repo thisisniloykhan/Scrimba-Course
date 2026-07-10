@@ -3,5 +3,5 @@
 		where sold is true
 */
 
-SELECT COUNT(*) AS total_sold FROM cars
+SELECT SUM(price) AS total_earnings FROM cars
 	WHERE sold IS TRUE;
