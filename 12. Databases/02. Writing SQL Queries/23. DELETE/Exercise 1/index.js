@@ -1,5 +1,5 @@
-import { PGlite } from '@electric-sql/pglite';
-import fs from 'fs';
+import { PGlite } from "@electric-sql/pglite";
+import fs from "fs/promises";
 
 (async () => {
   const db = new PGlite();
@@ -62,7 +62,8 @@ import fs from 'fs';
 `);
 
   // Load the SQL file
-  const query = fs.readFileSync('query.sql', 'utf8');
+  const __dirname = import.meta.dirname;
+  const query = await fs.readFile(`${__dirname}/query.sql`, "utf8");
 
   // Insert example
   await db.exec(`
@@ -72,7 +73,7 @@ import fs from 'fs';
 	'Ford', 'Escort RS2000', 1978, 39000, 'blue', 4, FALSE
 ), (
 	'Aston Martin', 'V8 Vantage', 1977, 145000, 'dark green', 5, FALSE
-);`)
+);`);
 
   // Insert challenge
   await db.exec(`
@@ -83,27 +84,28 @@ import fs from 'fs';
 ), (
 	'Porsche', '944 Turbo', 1986, 48000, 'white', 4, FALSE
 );
-`)
+`);
 
   // Update example
   await db.exec(`
   UPDATE cars SET
 	  sold = TRUE
   WHERE brand = 'Ford'
-  AND model = 'Escort RS2000';`)
+  AND model = 'Escort RS2000';`);
 
   // Update challenge
   await db.exec(`
   UPDATE cars SET
 	price = 72000, condition = 5
-  WHERE brand = 'Porsche' AND model = '944 Turbo';`)
-
+  WHERE brand = 'Porsche' AND model = '944 Turbo';`);
 
   // For section 4 - execute the CRUD operation
-  await db.exec(query)
+  await db.exec(query);
 
-  // Display data from the table 
-  const response = await db.query(`SELECT brand, model, condition, price, sold FROM cars ORDER BY id;`)
+  // Display data from the table
+  const response = await db.query(
+    `SELECT brand, model, condition, price, sold FROM cars ORDER BY id;`,
+  );
 
   console.clear();
   console.table(response.rows);

@@ -1,5 +1,5 @@
 import { PGlite } from '@electric-sql/pglite';
-import fs from 'fs';
+import fs from 'fs/promises';
 
 (async () => {
   const db = new PGlite();
@@ -62,7 +62,9 @@ import fs from 'fs';
 `);
 
   // Load the SQL file
-  const query = fs.readFileSync('query.sql', 'utf8');
+    const __dirname = import.meta.dirname;
+    const query = await fs.readFile(`${__dirname}/query.sql`, "utf8");
+
 
   // Insert example
   await db.exec(`

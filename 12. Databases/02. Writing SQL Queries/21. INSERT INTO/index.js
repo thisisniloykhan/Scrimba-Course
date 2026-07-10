@@ -1,5 +1,5 @@
-import { PGlite } from '@electric-sql/pglite';
-import fs from 'fs';
+import { PGlite } from "@electric-sql/pglite";
+import fs from "fs/promises";
 
 (async () => {
   const db = new PGlite();
@@ -62,10 +62,11 @@ import fs from 'fs';
 `);
 
   // Load the SQL file
-  const query = fs.readFileSync('query.sql', 'utf8');
+  const __dirname = import.meta.dirname;
+  const query = await fs.readFile(`${__dirname}/query.sql`, "utf8");
 
   // For section 4 - execute the CRUD operation
-  await db.exec(query)
+  await db.exec(query);
 
   // Insert example
   await db.exec(`
@@ -75,10 +76,12 @@ import fs from 'fs';
 	'Ford', 'Escort RS2000', 1978, 39000, 'blue', 4, FALSE
 ), (
 	'Aston Martin', 'V8 Vantage', 1977, 145000, 'dark green', 5, FALSE
-);`)
+);`);
 
-  // Display data from the table 
-  const response = await db.query(`SELECT brand, model, year, price FROM cars;`)
+  // Display data from the table
+  const response = await db.query(
+    `SELECT brand, model, year, price FROM cars;`,
+  );
 
   console.clear();
   console.table(response.rows);

@@ -5,3 +5,11 @@
 		2. Brand: Porsche, model: 944 Turbo, year: 1986,
 			retail_price: 48000, color: white, condition: 4, sold: false
 */
+
+INSERT INTO cars (
+	brand, model, year, price, color, condition, sold
+) VALUES (
+	'Chevrolet', 'Bel Air', 1955, 50000, 'purple', 5, false
+),(
+	'Porsche', '944 Turbo', 1986, 48000, 'white', 4, false
+);
